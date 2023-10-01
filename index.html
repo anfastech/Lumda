@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Editor with Syntax Highlighting</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        overflow: hidden;
+      }
+
+      .container {
+      /* Default styles (display: block) */
+        display: block;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 90vh;
+        width: 98vw;
+        padding: 10px;
+        overflow: hidden;
+      }
+
+      .textarea-container,
+      .output-container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        width: 100%;
+        min-height: 40%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+
+      .CodeMirror {
+        font-size: 14px;
+        border: none;
+      }
+
+      .btn-container {
+        margin-top: 10px;
+        text-align: right;
+        width: 80vw;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%; /* Make the iframe take up the full height of the output container */
+        border: none;
+      }
+
+      /* Media query for larger screens */
+      @media (min-width: 768px) {
+        .container {
+          display: flex;
+          flex-direction: row;
+          /* Additional styles for larger screens go here */
+        }
+        .textarea-container,
+      .output-container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        width: 42%;
+        min-height: 50%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-container">
+      <button id="run-button">Run</button>
+    </div>
+    <div class="container">
+      <div class="textarea-container">
+        <textarea id="text-area"></textarea>
+      </div>
+      <div class="output-container" id="output-window">
+        <!-- Output content will be displayed here -->
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.min.js"></script>
+    <script>
+      const textArea = document.getElementById("text-area");
+      const outputWindow = document.getElementById("output-window");
+      const runButton = document.getElementById("run-button");
+
+      const editor = CodeMirror.fromTextArea(textArea, {
+        mode: "xml",
+        lineNumbers: true,
+        htmlMode: true, // Enable HTML-specific highlighting
+      });
+
+      runButton.addEventListener("click", () => {
+        // Clear the previous output
+        outputWindow.innerHTML = "";
+
+        // Get the HTML content from the editor
+        const htmlCode = editor.getValue();
+
+        // Create an iframe to display the output
+        const iframe = document.createElement("iframe");
+        iframe.setAttribute("sandbox", "allow-scripts");
+        iframe.style.border = "none";
+
+        // Append the iframe to the output window
+        outputWindow.appendChild(iframe);
+
+        // Use srcdoc to load the HTML content into the iframe
+        iframe.srcdoc = htmlCode;
+      });
+    </script>
+  </body>
+</html>

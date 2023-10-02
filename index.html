@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTML Editor with Syntax Highlighting</title>
+    <title>IDE 4 html</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css"
     />
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
 
       * {
-        font-family: 'poppins';
+        font-family: "poppins";
       }
 
       body {
@@ -83,9 +83,18 @@
       }
 
       .symbol {
-        color: #ff4800;
+        background: linear-gradient(
+          0deg,
+          rgb(202, 112, 255),
+          rgb(202, 112, 255),
+          rgb(0, 255, 179),
+          rgb(208, 157, 255),
+          rgb(132, 0, 255)
+        );
+        -webkit-background-clip: text; /* For Safari and older versions of Chrome */
+        color: transparent; /* Hide the text color */
         font-style: italic;
-        font-size:35px ;
+        font-size: 35px;
       }
 
       button {
@@ -127,18 +136,30 @@
       }
     </style>
   </head>
-  <body> <br>
+  <body>
     <div class="dailog">
       <div class="btn-container">
         <div class="logo">
-          <pre class="pre"><img width="30" height="30" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtXoMe5_dYUrkV6NfqUrzH7YHuwEqXNbsy0g&usqp=CAU" />  Git Babe <span class="symbol">&lt;</span><span style="color:rgb(87, 146, 19)"> html</span><span class="symbol">&gt;</span> IDE</pre>
+          <pre
+            class="pre"
+          ><img width="30" height="30" src="https://cdn.icon-icons.com/icons2/1144/PNG/512/githublogo1_81045.png" />  Git's <span class="symbol">&lt;</span><span style=" background: linear-gradient(180deg, rgb(115, 17, 172),  rgb(202, 112, 255), rgb(212, 53, 141),rgb(255, 130, 108), rgb(235, 91, 65), rgb(0, 255, 179));
+            -webkit-background-clip: text; /* For Safari and older versions of Chrome */
+            color: transparent; /* Hide the text color */"> html</span><span class="symbol">&gt;</span> IDE</pre>
         </div>
         <button id="run-button">Run</button>
       </div>
     </div>
     <div class="container">
       <div class="textarea-container">
-        <textarea id="text-area"></textarea>
+        <textarea id="text-area">
+<html>
+  <body>
+    <h5>My First Heading..</h5>
+    <p>paragarph..</p>
+    <font color="lavender">Simple and Easy</font>
+  </body>
+</html>
+        </textarea>
       </div>
       <div class="output-container" id="output-window">
         <!-- Output content will be displayed here -->
